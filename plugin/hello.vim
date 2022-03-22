@@ -1,5 +1,9 @@
+let s:PLUG_DIR = expand("<sfile>:p:h")
 
-"echo 'hello'
+execute 'py3file' . s:PLUG_DIR . '/hello.py'
+
+"在终端上C-/发送C-_
+map <C-_>  <ESC>:'<,'>py3 comment()<CR>
 
 function! Fmt_html()
   execute '%s/>\([^\n>]\)/>\r\1/g'
@@ -18,3 +22,4 @@ function! FmtJson() abort range
 endfunction
 
 command! -range=% FmtJson <line1>,<line2>call FmtJson()
+

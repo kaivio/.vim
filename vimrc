@@ -78,3 +78,15 @@ set nofoldenable
 " set cocu=nc 
 autocmd BufEnter *.md set concealcursor=nc
 
+
+" 为映射 ALT 键做准备
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+
+set timeout ttimeoutlen=50
+
+
