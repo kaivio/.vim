@@ -9,4 +9,3 @@ def comment():
         n = i+r.start
         b[n] = '# '+b[n]
             
-    print(r,len(r))

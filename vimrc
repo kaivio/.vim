@@ -6,24 +6,22 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'Yggdroot/indentLine'
 Plugin 'preservim/nerdtree'
 Plugin 'yianwillis/vimcdoc'
+Plugin 'preservim/nerdcommenter'
 " 配色
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 
 " 自动补全
 Plugin 'ycm-core/YouCompleteMe'
-" Track the engine.
 
-" 代码片段
+" 代码片段引擎
 Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
+" 代码片段定义
 Plugin 'kaivio/vim-snippets'
 
 " markdown
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
-
 call vundle#end()
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
@@ -56,6 +54,36 @@ let g:ycm_add_preview_to_completeopt = 0
 
 autocmd Filetype json let g:indentLine_enabled = 0
 "autocmd Filetype markdown let g:indentLine_enabled = 0
+
+
+" 注释插件
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
 
 " 设置制表符宽度 和 用空格代替
 set tabstop=2
