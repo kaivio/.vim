@@ -54,8 +54,10 @@ let g:ycm_semantic_triggers =  {
       \ }
 " 读取标签(tags)文件
 let g:ycm_collect_identifiers_from_tags_files = 1
-" 基于语法 (不太好用)
-" let g:ycm_seed_identifiers_with_syntax = 1
+" 启用基于语法 (不太好用)
+if &filetype != 'vim'
+  let g:ycm_seed_identifiers_with_syntax = 1
+endif
 " 关闭文档预览
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
