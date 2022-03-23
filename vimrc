@@ -23,20 +23,18 @@ Plugin 'kaivio/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 call vundle#end()
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
+
+" 代码片段插件
 let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-autocmd vimenter * ++nested colorscheme gruvbox
-set background=dark
+autocmd BufReadPre *.snippets set ft=snippets
 
-" 配置YCM
+" YCM 插件
 set ofu=syntaxcomplete#Complete
 " imap <silent>  ` <C-X><C-O>
 " imap <c-space> <c-x><c-o>
@@ -44,10 +42,20 @@ set ofu=syntaxcomplete#Complete
 "let g:ycm_semantic_triggers =  {
 "  \'javascript': [ 're!\w{2}' ],
 "  \ }
+" -------------------- 
+" let g:ycm_semantic_triggers =  {
+"       \ 'c,cpp,python,perl,lua,sh': ['re!\w{2}'],
+"       \ 'html,css,scss,sass,javascript': ['re!\w{2}'],
+"       \ }
+" --------------------
+"  自动触发补全
 let g:ycm_semantic_triggers =  {
-      \ 'c,cpp,python,perl,lua,sh': ['re!\w{2}'],
-      \ 'html,css,scss,sass,javascript': ['re!\w{2}'],
+      \ '*': ['re!\w{2}'],
       \ }
+" 读取标签(tags)文件
+let g:ycm_collect_identifiers_from_tags_files = 1
+" 基于语法 (不太好用)
+" let g:ycm_seed_identifiers_with_syntax = 1
 " 关闭文档预览
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
@@ -84,6 +92,9 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
 
+" 主题
+autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark
 
 " 设置制表符宽度 和 用空格代替
 set tabstop=2

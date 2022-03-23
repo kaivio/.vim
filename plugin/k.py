@@ -1,6 +1,12 @@
+from tempfile import gettempdir
+import subprocess
 import logging
-logging.basicConfig(filename='k.log', encoding='utf-8', level=logging.DEBUG)
-
+logger = logging.Logger('k',logging.DEBUG)
+handle = logging.FileHandler(gettempdir()+'/k_debug.log')
+handle.setLevel(logging.DEBUG)
+#  fmt = logging.Formatter('%(ip)s %(message)s', defaults={"ip": None})
+#  handle.setFormatter(fmt)
+logger.addHandler(handle)
 
 _k_it = set()
 def _k_add(func):
@@ -23,7 +29,7 @@ def complete_k_test(key,line,pos):
 
 def complete_k(rv):
     k,l,p = vim.eval('a:000')
-    logging.debug((k,l,p))
+    logger.debug((k,l,p))
     args = l.split(' ',2)
     items = []
     if len(args) > 2:
@@ -37,3 +43,20 @@ def complete_k(rv):
                 items.append(i)
 
     vim.command('let %s = "%s"' % (rv,'\n'.join(items)))
+
+
+@_k_add
+def k_p():
+    cp = subprocess.run(['clipboard-get'],capture_output=True,text=True)
+    s = cp.stdout
+    line = vim.eval('line(".")')
+    n = int(line) 
+    logger.debug(f'paste: {cp.returncode}\n{s}')
+    logger.debug(f'line: {n}')
+    logger.debug(vim.eval('a:'))
+    for si in s.split('\n'):
+        vim.current.buffer.append(si,n)
+        n += 1
+
+    print(f' {n}L inserted')
+
