@@ -2,6 +2,10 @@
 command! -range=% Test <line1>,<line2>!cat
 
 
+exec "set <a-c-z>=\x1B\x1Az"
+exec "set <a-c-z>=\e\x1Az"
+exec "nmap <silent> <a-c-z> :echo 'ca-z'<CR>"
+"exec "nmap \e\e
 
 fun! CompleteMonths(findstart, base)
   if a:findstart

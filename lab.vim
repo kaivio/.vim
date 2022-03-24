@@ -10,7 +10,7 @@ while c <= 'z'
   exec "imap \e".c." <A-".c.">"
   let c = nr2char(1+char2nr(c))
 endw
-"
+""""""
 " 在正常模式需要足够的等待时间接收序列
 " 但在插入模式下降低字符序列等待时间
 " 让其能在瞬间返回正常模式
@@ -20,7 +20,24 @@ set timeoutlen=2000
 au InsertEnter * set timeoutlen=10
 au InsertLeave * set timeoutlen=2000
 
-" #lab
+"== 操 作 指 令 ===========================
+
+
+nmap ds _d$
+
+nmap r <c-r>
+imap <silent> <c-u> <ESC>:<CR>ua
+imap <silent> <c-r> <ESC><c-r>a
+imap <silent> <c-z> <ESC>:<CR>ua
+imap <silent> <a-z> <ESC><c-r>a
+nmap <c-z> :echo "c-z"
+
+" 增强帮助文件阅读
+au FileType help wincmd T
+au FileType help nmap <buffer> <CR> <C-]>
+au FileType help nmap <buffer> <BS> <C-o>
+
+"== 输 入 指 令 ===========================
 
 " 符号配对输入
 inoremap ` ``<LEFT>
@@ -50,13 +67,8 @@ imap <c-t> <c-q><tab>
 au FileType help  imap <A-l> <ESC>:<CR>o<ESC>:<CR>S========================================<CR>
 au FileType help  nmap 分割线 :sl 10m<CR> o<ESC>:sl 10m<CR>S========================================<ESC>
 
-" 针对帮助文件的配置
-au FileType help wincmd T
-au FileType help nmap <buffer> <CR> <C-]>
-au FileType help nmap <buffer> <BS> <C-o>
 
-
-" 测试
+"== 测 试 指 令 ===========================
 
 map 你好 :echo 'hello'<CR>
 map x :echo 'hello ttx'<CR>
@@ -65,5 +77,4 @@ map xz :echo 'hello txz'<CR>
 
 
 nmap <a-x> :echo 'hello x'<CR>
-
 
