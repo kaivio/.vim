@@ -45,6 +45,16 @@ def complete_k(rv):
 
     vim.command('let %s = "%s"' % (rv,'\n'.join(items)))
 
+@_k_add
+def k_y():
+    s = ""
+    i = int(vim.eval('a:line1'))-1
+    j = int(vim.eval('a:line2'))
+    for k in range(i,j):
+        s += vim.current.buffer[k]+'\n'
+ 
+    cp = subprocess.run(['clipboard-set'],capture_output=True,text=True,input=s)
+    print(f' {j-i}L copy')
 
 @_k_add
 def k_p():
