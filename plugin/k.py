@@ -64,13 +64,30 @@ def k_p():
 
 @_k_add
 def k_color():
+    from colour import Color
     nr = int(vim.eval('line(".")'))
     nc = int(vim.eval('col(".")'))
     line = vim.current.line
+
+    logger.debug(vim.eval('a:'))
     logger.debug(line)
     logger.debug(nc)
+
     color, span = scan_token(line,nc-1,'#[0-9a-f]+','[^0-9a-f]')
-    print(color)
+    c = Color(color)
+    new_color = None
+    args = vim.eval('a:000')
+    for arg in args:
+        if arg == '+':
+            l=c.get_luminance()
+            c.set_luminance(l+0.1)
+            new_color = c.get_hex_l()
+
+    if new_color:
+        j,k = span
+        new_line = line[0:j]+new_color+line[k:]
+        vim.current.line = new_line
+        print(f'{color} => {new_color}')
 
 
 def scan_token(s,i,patt,de_patt,flag=re.I):
