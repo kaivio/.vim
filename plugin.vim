@@ -29,13 +29,20 @@ Plugin 'kaivio/vim-snippets'
 " markdown
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
+
+Plugin 'lymslive/autoplug'
+
 call vundle#end()
+
+call autoplug#load()
+" PI qcmotion
 
 "== 配色主题 ============================ 
 autocmd vimenter * ++nested colorscheme gruvbox
 set background=dark
 
 "== 插件快捷键配置 ======================  
+
 
 " 代码片段
 let g:UltiSnipsExpandTrigger="<c-l>"
