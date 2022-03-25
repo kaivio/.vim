@@ -10,32 +10,41 @@ while c <= 'z'
   exec "imap \e".c." <A-".c.">"
   let c = nr2char(1+char2nr(c))
 endw
-""""""'"'''
+"
 " 在正常模式需要足够的等待时间接收序列
 " 但在插入模式下降低字符序列等待时间
 " 让其能在瞬间返回正常模式
+
 set timeout
-"set ttimeoutlen=-1
-set timeoutlen=2000
+" set ttimeout
+" set ttimeoutlen=-1
+set timeoutlen=3000
 au InsertEnter * set timeoutlen=10
-au InsertLeave * set timeoutlen=2000
+au InsertLeave * set timeoutlen=3000
+
+" 笔  记: 只能为插入模式定义特殊组合键，
+"         因为组合键是ESC转义序列，
+"         单独按下<ESC>时会进入等待。
+"     (!) 除非有个有个热键快速回到正常模式
+imap <F1> <ESC>
+cmap <F1> <c-u>echo "Normal"<CR>
+map <F1> :<c-u>echo "Normal"<CR>
 
 "== 操 作 指 令 ===========================
 
-
-" double-home
-fun DoubleHome()
+" double-home (Note: I -> N then col-1)
+fun DoubleHome(offset)
   let l:col = col('.')
   normal _
-  if l:col+1 == col('.')
+  if l:col+a:offset == col('.')
     normal 0
   endif
 endfun
 
-" 插入模式下实用性存疑
-inoremap <silent> OH <ESC>:call DoubleHome()<CR>i
-nnoremap <silent> OH  :call DoubleHome()<CR>h
-
+inoremap <silent> OH <ESC>:call DoubleHome(1)<CR>i
+nnoremap <silent> OH :call DoubleHome(0)<CR>
+" au VimEnter * exec "set <Home>=\eOH"
+" au VimEnter * echomsg "vim hello"
 imap <F8> <END><CR>
 
 
@@ -54,6 +63,7 @@ nmap <c-z> :echo "c-z"
 au FileType help sl 50m| wincmd T
 au FileType help nmap <buffer> <CR> <C-]>
 au FileType help nmap <buffer> <BS> <C-o>
+au FileType help hi link Ignore GruvboxFg4
 
 "== 输 入 指 令 ===========================
 
@@ -88,6 +98,8 @@ au FileType help  nmap 分割线 :sl 10m<CR> o<ESC>:sl 10m<CR>S=================
 
 
 "== 测 试 指 令 ===========================
+au FileType vim inoreabbr <buffer> cr <lt>CR>
+au FileType vim inoreabbr <buffer> esc <lt>ESC>
 
 map 你好 :echo 'hello'<CR>
 map x :echo 'hello ttx'<CR>
@@ -97,9 +109,11 @@ map <F8> :echo 'F8 working'<CR>
 map <c-F8> :echo 'c-F8 working'<CR>
 map <a-F8> :echo 'a-F8 working'<CR>
 map <c-a-F8> :echo 'c-a-F8 working'<CR>
-
-
 nmap <a-x> :echo 'hello x'<CR>
+nmap [1;3D :echo "A-left"<CR>
+vmap [1;3D :echo "A-left"<CR>
+imap [1;3D :echo "A-left"<CR>
+cmap [1;3D echo "A-left"<CR>
 
 
 "== 测 试 钩 子 ===========================

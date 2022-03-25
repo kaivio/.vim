@@ -52,7 +52,7 @@ def k_y():
     j = int(vim.eval('a:line2'))
     for k in range(i,j):
         s += vim.current.buffer[k]+'\n'
- 
+
     cp = subprocess.run(['clipboard-set'],capture_output=True,text=True,input=s)
     print(f' {j-i}L copy')
 
@@ -61,7 +61,7 @@ def k_p():
     cp = subprocess.run(['clipboard-get'],capture_output=True,text=True)
     s = cp.stdout
     line = vim.eval('line(".")')
-    n = int(line) 
+    n = int(line)
     logger.debug(f'paste: {cp.returncode}\n{s}')
     logger.debug(f'line: {n}')
     logger.debug(vim.eval('a:'))
@@ -116,6 +116,6 @@ def scan_token(s,i,patt,de_patt,flag=re.I):
             return ('',(-1,-1))
 
     return ('',(-1,-1))
-    
+
     logger.debug(f'scan: {i}')
 
