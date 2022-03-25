@@ -118,8 +118,8 @@ cmap [1;3D echo "A-left"<CR>
 
 "== 测 试 钩 子 ===========================
 " 为bin目录添加x模式
-au BufWritePost **/bin/** !chmod +x %
+au BufWritePost **/bin/** silent !chmod +x %
 " 清除行尾空白
 au BufWritePre *  py3do return line.rstrip()
 
-
+au BufEnter * normal `"
