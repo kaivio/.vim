@@ -30,11 +30,11 @@ Plugin 'kaivio/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 
-Plugin 'lymslive/autoplug'
+" Plugin 'lymslive/autoplug'
 
 call vundle#end()
 
-call autoplug#load()
+" call autoplug#load()
 " PI qcmotion
 
 "== 配色主题 ============================ 

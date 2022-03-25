@@ -1,6 +1,6 @@
 
 " 在插入和可视模式下不隐藏字符
-" set cocu=nc 
+" set cocu=nc
 autocmd BufEnter *.md set concealcursor=nc
 
 " 为映射 ALT 键做准备
@@ -14,7 +14,7 @@ endw
 " 在正常模式需要足够的等待时间接收序列
 " 但在插入模式下降低字符序列等待时间
 " 让其能在瞬间返回正常模式
-set timeout 
+set timeout
 "set ttimeoutlen=-1
 set timeoutlen=2000
 au InsertEnter * set timeoutlen=10
@@ -51,7 +51,7 @@ imap <silent> <a-z> <ESC><c-r>a
 nmap <c-z> :echo "c-z"
 
 " 增强帮助文件阅读
-au FileType help wincmd T
+au FileType help sl 50m| wincmd T
 au FileType help nmap <buffer> <CR> <C-]>
 au FileType help nmap <buffer> <BS> <C-o>
 
@@ -103,5 +103,9 @@ nmap <a-x> :echo 'hello x'<CR>
 
 
 "== 测 试 钩 子 ===========================
-
+" 为bin目录添加x模式
 au BufWritePost **/bin/** !chmod +x %
+" 清除行尾空白
+au BufWritePre *  py3do return line.rstrip()
+
+
