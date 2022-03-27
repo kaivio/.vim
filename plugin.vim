@@ -4,18 +4,18 @@ call vundle#begin()
 " jsx 语法高亮
 Plugin 'maxmellon/vim-jsx-pretty'
 
-" 缩进线 
+" 缩进线
 Plugin 'Yggdroot/indentLine'
 
 " 树形导航(未启用)
 " Plugin 'preservim/nerdtree'
-" 中文文档 
+" 中文文档
 Plugin 'yianwillis/vimcdoc'
 
 " 快速注释
 Plugin 'preservim/nerdcommenter'
 
-" 配色主题 
+" 配色主题
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 
@@ -25,6 +25,8 @@ Plugin 'ycm-core/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 " 代码片段定义库
 Plugin 'kaivio/vim-snippets'
+" git
+" Plugin 'tpope/vim-fugitive'
 
 " markdown
 Plugin 'godlygeek/tabular'
@@ -37,11 +39,11 @@ call vundle#end()
 " call autoplug#load()
 " PI qcmotion
 
-"== 配色主题 ============================ 
+"== 配色主题 ============================
 autocmd vimenter * ++nested colorscheme gruvbox
 set background=dark
 
-"== 插件快捷键配置 ======================  
+"== 插件快捷键配置 ======================
 
 
 " 代码片段
@@ -63,8 +65,8 @@ let g:markdown_syntax_conceal=0
 au FileType help IndentLinesToggle
 
 
-" 代码片段  
-" 编辑命令  :UltiSnipsEdit 
+" 代码片段
+" 编辑命令  :UltiSnipsEdit
 let g:UltiSnipsEditSplit="vertical"
 " 识别文件类型 (插件内部有时没自动识别)
 autocmd BufReadPre *.snippets set ft=snippets
@@ -94,7 +96,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 
@@ -107,7 +109,7 @@ set ofu=syntaxcomplete#Complete
 "let g:ycm_semantic_triggers =  {
 "  \'javascript': [ 're!\w{2}' ],
 "  \ }
-" -------------------- 
+" --------------------
 " let g:ycm_semantic_triggers =  {
 "       \ 'c,cpp,python,perl,lua,sh': ['re!\w{2}'],
 "       \ 'html,css,scss,sass,javascript': ['re!\w{2}'],
