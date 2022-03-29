@@ -27,6 +27,9 @@ Plugin 'SirVer/ultisnips'
 Plugin 'kaivio/vim-snippets'
 " git
 " Plugin 'tpope/vim-fugitive'
+" SQL
+" Plugin 'tpope/vim-dadbod.git'
+" Plugin 'vim-scripts/dbext.vim'
 
 " markdown
 Plugin 'godlygeek/tabular'

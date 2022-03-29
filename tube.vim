@@ -15,6 +15,7 @@ nnoremap <script> v viw
 vnoremap <script> <c-f> "fy/<c-r>f
 nnoremap <script> <c-f> viw"fy/<c-r>f
 nnoremap <script> <c-h> :s/<c-r>"
+xnoremap <script> <c-h> "fy:s/<c-r>f
 nnoremap <script> <c-c> :nohlsearch<CR>
 xnoremap <script> <bar> I
 inoremap <script> <a-bar> <esc><c-v>
@@ -29,8 +30,7 @@ nnoremap <script> <a-P> :normal `pP`pjmp<CR>
 nnoremap + :normal mpyyp`pj<c-a><CR>
 nnoremap <a-+> :<c-u>exec "normal viw".v:count1."j<c-v>g<c-a>"<CR>
 
-
-
+imap <a-bs> <esc>m0_d`0i
 
 "== 测 试 指 令 ===========================
 au FileType vim inoreabbr <buffer> cr <lt>CR>
